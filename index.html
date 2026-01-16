@@ -592,12 +592,18 @@
 
                     const formData = new FormData(form);
                     const submitButton = form.querySelector('button[type="submit"]');
+                    const emailInput = form.querySelector('input[type="email"]');
                     const originalButtonText = submitButton ? submitButton.textContent : '';
 
                     // Show loading state
                     if (submitButton) {
                         submitButton.textContent = 'Submitting...';
                         submitButton.disabled = true;
+                    }
+
+                    // Clear the email input
+                    if (emailInput) {
+                        emailInput.value = '';
                     }
 
                     // Submit to Mailchimp via fetch
