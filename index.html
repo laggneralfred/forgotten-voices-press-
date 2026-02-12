@@ -1,741 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Forgotten Voices Press brings forgotten German literary masterpieces to English readers. Starting with Ricarda Huch's Soap Bubbles (1905).">
-    <title>Forgotten Voices Press - Rediscovering German Literary Classics</title>
-
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Forgotten Voices Press - Rediscovering German Literary Classics">
-    <meta property="og:description" content="Premium translations of forgotten German literature. First book: Ricarda Huch's Soap Bubbles - three satirical novellas from 1905.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://forgottenvoicespress.com">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #2c3e50;
-            --accent-color: #c9926e;
-            --text-color: #333;
-            --light-bg: #f8f6f3;
-            --white: #ffffff;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .serif {
-            font-family: 'Crimson Text', serif;
-        }
-
-        /* Header */
-        header {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            font-family: 'Crimson Text', serif;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
-            color: var(--white);
-            padding: 8rem 2rem 6rem;
-            margin-top: 60px;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-family: 'Crimson Text', serif;
-            font-size: 3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero .subtitle {
-            font-size: 1.3rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            color: rgba(255,255,255,0.9);
-        }
-
-        .hero .launch-date {
-            display: inline-block;
-            background: var(--accent-color);
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        /* Book Showcase */
-        .book-showcase {
-            max-width: 1200px;
-            margin: -4rem auto 0;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .book-card {
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            padding: 3rem;
-            align-items: center;
-        }
-
-        .book-cover {
-            width: 100%;
-            max-width: 350px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            border-radius: 5px;
-        }
-
-        .book-info h2 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .book-info .author {
-            font-size: 1.3rem;
-            color: var(--accent-color);
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .book-info .description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-        }
-
-        /* Email Signup */
-        .email-signup {
-            background: var(--light-bg);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .signup-content {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .signup-content h2 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .signup-content p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #666;
-        }
-
-        .email-form {
-            display: flex;
-            gap: 1rem;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .email-form input[type="email"] {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .email-form input[type="email"]:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            background: var(--accent-color);
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            background: #b8825e;
-            transform: translateY(-2px);
-        }
-
-        .btn-large {
-            padding: 1.2rem 3rem;
-            font-size: 1.1rem;
-        }
-
-        /* Content Sections */
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .section h2 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
-        }
-
-        .content-block {
-            font-size: 1.05rem;
-            line-height: 1.8;
-        }
-
-        .content-block h3 {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .author-image {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin: 2rem auto;
-            display: block;
-        }
-
-        /* Mission Section */
-        .mission {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .mission-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .mission h2 {
-            font-family: 'Crimson Text', serif;
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .mission p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a252f;
-            color: rgba(255,255,255,0.7);
-            padding: 3rem 2rem 2rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .social-links {
-            margin: 1rem 0 2rem;
-        }
-
-        .social-links a {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin: 0 1rem;
-            font-size: 0.95rem;
-        }
-
-        .social-links a:hover {
-            color: var(--white);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .book-card {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 2rem;
-                text-align: center;
-            }
-
-            .book-cover {
-                margin: 0 auto;
-            }
-
-            .email-form {
-                flex-direction: column;
-            }
-
-            .two-column {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            nav a {
-                margin-left: 1rem;
-                font-size: 0.85rem;
-            }
-        }
-
-        /* Utility Classes */
-        .text-center {
-            text-align: center;
-        }
-
-        .mb-2 {
-            margin-bottom: 2rem;
-        }
-
-        .highlight {
-            color: var(--accent-color);
-            font-weight: 600;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover Soap Bubbles by Ricarda Huch: three sharp, literary stories now introduced for U.S. readers with context, essays, and reading guides.">
+  <meta property="og:title" content="Soap Bubbles by Ricarda Huch | Forgotten Voices Press">
+  <meta property="og:description" content="A modern guide to Soap Bubbles and Ricarda Huch for U.S. readers.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://forgottenvoicespress.com">
+  <title>Soap Bubbles by Ricarda Huch | Forgotten Voices Press</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">Forgotten Voices Press</div>
-            <div class="nav-links">
-                <a href="#book">Our First Book</a>
-                <a href="#about">About</a>
-                <a href="#mission">Mission</a>
-                <a href="#signup">Get Updates</a>
-            </div>
-        </nav>
-    </header>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html">Forgotten Voices Press<small>German literature, newly readable</small></a>
+      <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="main-nav" data-nav aria-label="Main navigation">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="soap-bubbles/index.html">Soap Bubbles</a></li>
+          <li><a href="ricarda-huch/index.html">Ricarda Huch</a></li>
+          <li><a href="articles/index.html">Articles</a></li>
+          <li><a href="#signup">Signup</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
+  <main id="main">
     <section class="hero">
-        <div class="hero-content">
-            <h1>Rediscovering Germany's Lost Literary Voices</h1>
-            <p class="subtitle">Premium translations of forgotten masterpieces by women writers and overlooked authors from 1850-1954</p>
-            <div class="launch-date">First Book: Launching February 2026</div>
+      <div class="wrap hero-grid">
+        <div>
+          <span class="kicker">Newly Curated Collection</span>
+          <h1>Soap Bubbles by Ricarda Huch</h1>
+          <p class="lead">Three witty, unsettling stories from 1905 that still speak to U.S. readers now: power, prejudice, social theater, and the stories institutions tell about themselves.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="soap-bubbles/index.html">Read about the collection</a>
+            <a class="btn btn-secondary" href="#signup">Join updates</a>
+            <a class="btn btn-secondary" href="ricarda-huch/index.html">About Ricarda Huch</a>
+          </div>
+          <p class="small" style="margin-top:0.8rem;">Built for curious U.S. readers who want literary context without academic gatekeeping.</p>
         </div>
+        <div class="card">
+          <img class="featured-img" src="soap-bubbles-cover.jpg" alt="Cover of Soap Bubbles by Ricarda Huch">
+          <p class="meta" style="margin-top:0.8rem;"><strong>Inside:</strong> social satire, moral ambiguity, sharp character work, and a voice too often absent in English reading lists.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- Book Showcase -->
-    <section class="book-showcase">
-        <div class="book-card" id="book">
-            <div>
-                <!-- Replace with actual book cover image -->
-                <img src="soap-bubbles-cover.jpg" alt="Soap Bubbles by Ricarda Huch" class="book-cover">
-            </div>
-            <div class="book-info">
-                <h2>Soap Bubbles</h2>
-                <p class="author">by Ricarda Huch (1905)</p>
-                <p class="description">
-                    Three brilliant satirical novellas from one of Germany's most celebrated—and most forgotten—women writers.
-                    Written in 1905, these witty, psychologically astute stories offer a window into the lives of women
-                    navigating early 20th century German society with intelligence, humor, and quiet rebellion.
-                </p>
-                <p class="description">
-                    <strong>Now available in English for the first time.</strong>
-                </p>
-                <a href="#signup" class="btn btn-large">Get Sample Chapter + Launch Alert</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why This Book Matters Now -->
-    <section class="section" style="background: var(--white);">
-        <div style="max-width: 900px; margin: 0 auto;">
-            <h2 style="text-align: center; margin-bottom: 2rem;">Why <em>Soap Bubbles</em> Matters Now</h2>
-
-            <div style="background: var(--light-bg); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
-                <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 1rem;">
-                    <strong>For 120 years, English readers have been denied access to one of the sharpest satirical voices of the early 20th century.</strong>
-                </p>
-                <p style="font-size: 1.05rem; line-height: 1.8;">
-                    Ricarda Huch—seven-time Nobel Prize nominee, first woman elected to the Prussian Academy of Arts, praised by Thomas Mann as "the First Lady of German letters"—wrote <em>Soap Bubbles</em> in 1905 as "Three Jesting Tales." But beneath the light entertainment lies devastating social critique that feels startlingly contemporary.
-                </p>
-            </div>
-
-            <h3 style="text-align: center; font-family: 'Crimson Text', serif; font-size: 1.8rem; margin: 2.5rem 0 1.5rem 0; color: var(--accent-color);">Inside This Collection</h3>
-
-            <div style="margin: 2rem 0;">
-                <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #ddd;">
-                    <h4 style="font-family: 'Crimson Text', serif; font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.5rem;">
-                        1. The Life of Saint Wonnebald Pück
-                    </h4>
-                    <p style="line-height: 1.8; color: #555;">
-                        A thoroughly mediocre priest stumbles upward through the church hierarchy—from failed monk to incompetent abbot to scheming bishop—until he's eventually canonized as a saint. Huch's irony is devastating but never heavy-handed: she lets the absurdity of institutional corruption speak for itself. <strong>Sound familiar?</strong>
-                    </p>
-                </div>
-
-                <div style="margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #ddd;">
-                    <h4 style="font-family: 'Crimson Text', serif; font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.5rem;">
-                        2. From Bimbo's Transmigrations
-                    </h4>
-                    <p style="line-height: 1.8; color: #555;">
-                        A soul's journey through various reincarnations, told with the kind of philosophical playfulness that rewards careful reading. Huch explores identity, consciousness, and what it means to be human—questions that feel especially urgent in our age of AI and technological transformation.
-                    </p>
-                </div>
-
-                <div style="margin-bottom: 2rem;">
-                    <h4 style="font-family: 'Crimson Text', serif; font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.5rem;">
-                        3. The Jewish Grave
-                    </h4>
-                    <p style="line-height: 1.8; color: #555;">
-                        When a Jewish merchant dies in a small provincial town, the community's elaborate schemes to deny him a proper burial expose the ugly machinery of religious intolerance. The humor is dark, the observation of human pettiness precise, and the critique unmistakable. Reading it today—with antisemitism resurgent and "othering" a daily political weapon—Huch's 1905 satire cuts deeper than ever.
-                    </p>
-                </div>
-            </div>
-
-            <div style="background: linear-gradient(135deg, #f8f6f3 0%, #e8e6e3 100%); padding: 2rem; border-radius: 8px; border-left: 4px solid var(--accent-color); margin: 2.5rem 0;">
-                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.6rem; margin-bottom: 1rem; color: var(--primary-color);">
-                    Why These Stories Resonate in 2026
-                </h3>
-                <p style="line-height: 1.8; margin-bottom: 1rem;">
-                    Huch understood that comedy could carry truths too uncomfortable for solemn treatment. Her targets in 1905—religious hypocrisy, institutional corruption, the casual cruelty toward outsiders—remain our targets today.
-                </p>
-                <p style="line-height: 1.8; margin-bottom: 1rem;">
-                    But there's something else that makes this translation urgent: <strong>Huch lived to see her satire become prophecy.</strong> Two years after becoming the first woman elected to the Prussian Academy of Arts in 1931, she resigned in protest when the Nazi regime demanded the expulsion of Jewish members. She spent the war years in internal exile, then devoted her final years to documenting German resistance.
-                </p>
-                <p style="line-height: 1.8; font-style: italic;">
-                    That she could write with such wit about religious intolerance in 1905, and then live to oppose its most catastrophic expression, gives these "jesting tales" an unexpected weight. She knew exactly what she was satirizing, and history proved her right.
-                </p>
-            </div>
-
-            <div style="text-align: center; margin: 2.5rem 0;">
-                <p style="font-size: 1.2rem; font-weight: 600; color: var(--accent-color); margin-bottom: 1rem;">
-                    This is the first English translation.
-                </p>
-                <p style="font-size: 1.05rem; color: #666;">
-                    After 120 years, English readers finally have access to one of the most brilliant satirical voices of the early 20th century—a writer who saw clearly, wrote beautifully, and stood firm when it mattered most.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Email Signup -->
-    <section class="email-signup" id="signup">
-        <div class="signup-content">
-            <h2>Join Our Readers' Circle</h2>
-            <p>Get a <span class="highlight">free sample chapter</span> from Soap Bubbles, plus be the first to know when we launch.</p>
-
-            <!-- Mailchimp Signup Form -->
-            <form class="email-form" action="https://forgottenvoicespress.us7.list-manage.com/subscribe/post?u=7711409519d184557314150e1&amp;id=f341ae5513&amp;f_id=00cfc4e3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form">
-                <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email address" required>
-                <input type="hidden" name="SIGNUP" value="thank-you.html">
-                <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                    <input type="text" name="b_7711409519d184557314150e1_f341ae5513" tabindex="-1" value="">
-                </div>
-                <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="btn">Send Me the Sample</button>
-            </form>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;"><em>After signing up, you'll be redirected to your free sample.</em></p>
-
-            <p style="margin-top: 1rem; font-size: 0.9rem; color: #888;">
-                We respect your privacy. Unsubscribe anytime. No spam, ever.
-            </p>
-        </div>
-    </section>
-
-    <!-- About Ricarda Huch -->
-    <section class="section" id="about">
-        <h2>Who Was Ricarda Huch?</h2>
-        <div class="two-column">
-            <div class="content-block">
-                <h3>A Forgotten Giant of German Literature</h3>
-                <p>
-                    Ricarda Huch (1864-1947) was once one of Germany's most respected writers—the first woman
-                    admitted to the Prussian Academy of Arts, a prolific novelist, poet, and historian who
-                    resisted the Nazi regime and remained true to her principles throughout her life.
-                </p>
-                <p>
-                    Thomas Mann called her "the first lady of Germany." Her contemporaries compared her to Goethe.
-                    Yet today, outside of Germany, her work is nearly unknown.
-                </p>
-                <p>
-                    <em>Soap Bubbles</em> showcases her at her satirical best: witty observations of marriage,
-                    society, and the quiet rebellions of intelligent women trapped by convention.
-                </p>
-            </div>
-            <div class="content-block">
-                <!-- Placeholder for Ricarda Huch image -->
-                <img src="ricarda-huch.jpg" alt="Ricarda Huch" class="author-image">
-                <p style="text-align: center; font-style: italic; color: #666;">
-                    Ricarda Huch (1864-1947)<br>
-                    Novelist, Poet, Historian, Resistance Fighter
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About the Translator -->
-    <section class="section" style="background: var(--light-bg);">
-        <h2>About the Translator</h2>
-        <div class="two-column">
-            <div class="content-block">
-                <img src="terra-laggner.jpg" alt="Terra Laggner" class="author-image">
-                <p style="text-align: center; font-style: italic; color: #666; margin-top: 1rem;">
-                    Terra Laggner<br>
-                    Literary Translator
-                </p>
-            </div>
-            <div class="content-block">
-                <h3>Recovering Forgotten Voices</h3>
-                <p>
-                    <strong>Terra Laggner</strong> is a literary translator specializing in German-to-English translation
-                    of forgotten and overlooked works. <em>Soap Bubbles</em> represents her debut translation for
-                    Forgotten Voices Press—the culmination of years spent searching for German writers whose brilliance
-                    deserved a wider audience.
-                </p>
-                <p>
-                    "I first encountered Ricarda Huch while looking for overlooked German writers whose work had never
-                    found its way into English," Terra explains. "Her name kept appearing—seven-time Nobel Prize nominee,
-                    first woman elected to the Prussian Academy of Arts, praised by Thomas Mann—and yet almost nothing
-                    of hers was available to English readers. That seemed like an injustice worth correcting."
-                </p>
-                <p>
-                    Terra's approach to translation prioritizes both accuracy and readability. "Huch's German is elegant
-                    but never fussy," she notes. "I wanted English that moves with the same easy confidence—preserving
-                    the lightness and the edge without underlining the irony or dulling the wit."
-                </p>
-                <p>
-                    Based in Eureka, California, Terra is currently working on additional translations of forgotten
-                    German literary voices for Forgotten Voices Press, with a particular focus on women writers from
-                    the late 19th and early 20th centuries.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mission -->
-    <section class="mission" id="mission">
-        <div class="mission-content">
-            <h2>Our Mission</h2>
-            <p>
-                German literature from 1850-1954 is rich with forgotten voices—especially women writers,
-                regional authors, and those whose work was overshadowed by political upheaval or changing tastes.
-            </p>
-            <p>
-                <strong>Forgotten Voices Press</strong> brings these literary treasures to English readers
-                through premium, professionally-edited translations. We focus on works that deserve to be
-                rediscovered: brilliant, moving, insightful books that time has unjustly forgotten.
-            </p>
-            <p>
-                Our goal: Build a catalog of 10-20 translations that restore these voices to the conversation
-                they deserve to be part of.
-            </p>
-        </div>
-    </section>
-
-    <!-- Why This Matters -->
     <section class="section">
-        <h2>Why These Translations Matter</h2>
-        <div class="two-column">
-            <div class="content-block">
-                <h3>Literary Quality</h3>
-                <p>
-                    These aren't curiosities or historical artifacts—they're genuinely excellent books that
-                    can stand alongside the best contemporary fiction. They deserve to be read, enjoyed, and
-                    discussed by modern readers.
-                </p>
-            </div>
-            <div class="content-block">
-                <h3>Diverse Perspectives</h3>
-                <p>
-                    By focusing on underrepresented voices—women writers, regional authors, overlooked periods—we
-                    expand the canon and give readers access to perspectives that mainstream publishing has ignored.
-                </p>
-            </div>
-            <div class="content-block">
-                <h3>Cultural Heritage</h3>
-                <p>
-                    For readers with German heritage, these books connect them to their cultural roots.
-                    For all readers, they offer windows into worlds and perspectives we rarely encounter.
-                </p>
-            </div>
-            <div class="content-block">
-                <h3>Translation as Art</h3>
-                <p>
-                    We believe translation is an art form. Our translations are literary works in their own right—
-                    carefully crafted to preserve the author's voice while creating beautiful English prose.
-                </p>
-            </div>
+      <div class="wrap">
+        <h2>Start Here</h2>
+        <div class="grid grid-3">
+          <article class="card">
+            <span class="tag">Collection Guide</span>
+            <h3><a href="soap-bubbles/index.html">What Soap Bubbles is and how to read it</a></h3>
+            <p>A plain-language map of the stories, tone, and themes so first-time readers can enter with confidence.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Author Context</span>
+            <h3><a href="ricarda-huch/index.html">Who Ricarda Huch was</a></h3>
+            <p>A practical overview of her literary and historical work, and why her reputation matters today.</p>
+          </article>
+          <article class="card">
+            <span class="tag">Reading Path</span>
+            <h3><a href="articles/index.html">Explore essays and reading notes</a></h3>
+            <p>Short, scannable articles for readers who want context before or after each story.</p>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="email-signup">
-        <div class="signup-content">
-            <h2>Be Part of the Rediscovery</h2>
-            <p>Join our readers' circle and get the first chapter of <em>Soap Bubbles</em> delivered to your inbox.</p>
-
-            <!-- Mailchimp Signup Form (bottom of page) -->
-            <form class="email-form" action="https://forgottenvoicespress.us7.list-manage.com/subscribe/post?u=7711409519d184557314150e1&amp;id=f341ae5513&amp;f_id=00cfc4e3f0" method="post">
-                <input type="email" name="EMAIL" placeholder="Enter your email address" required>
-                <input type="hidden" name="SIGNUP" value="thank-you.html">
-                <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                    <input type="text" name="b_7711409519d184557314150e1_f341ae5513" tabindex="-1" value="">
-                </div>
-                <button type="submit" class="btn">Get Your Free Sample Chapter</button>
-            </form>
+    <section class="section">
+      <div class="wrap">
+        <h2>Featured Articles</h2>
+        <div class="grid grid-3">
+          <article class="card">
+            <p><span class="tag">Legacy</span> <span class="tag">Germany</span></p>
+            <h3><a href="articles/ricarda-huch-germany-legacy.html">Ricarda Huch in Germany: reception and legacy</a></h3>
+            <p class="meta">How a major figure can remain central in one language tradition and marginal in another.</p>
+          </article>
+          <article class="card">
+            <p><span class="tag">Gender</span> <span class="tag">History</span></p>
+            <h3><a href="articles/huch-woman-in-her-era.html">A woman writing in her era</a></h3>
+            <p class="meta">Barriers she faced, how she navigated them, and what that meant for her body of work.</p>
+          </article>
+          <article class="card">
+            <p><span class="tag">U.S. Readers</span> <span class="tag">Why Now</span></p>
+            <h3><a href="articles/why-huch-matters-in-the-us.html">Why Huch matters now in the U.S.</a></h3>
+            <p class="meta">What American readers gain when this work enters everyday literary conversation.</p>
+          </article>
+          <article class="card">
+            <p><span class="tag">Research</span> <span class="tag">Context</span></p>
+            <h3><a href="articles/reported-nominations-overlooked.html">Reported nominations and repeated overlooking</a></h3>
+            <p class="meta">How to frame recognition claims responsibly when public records are uneven.</p>
+          </article>
+          <article class="card">
+            <p><span class="tag">Works</span> <span class="tag">Author + Historian</span></p>
+            <h3><a href="articles/author-and-historian-total-work.html">Her total work: literature and historical writing</a></h3>
+            <p class="meta">A reader-friendly view of the full scope, not just one title.</p>
+          </article>
+          <article class="card">
+            <p><span class="tag">Collection</span> <span class="tag">Themes</span></p>
+            <h3><a href="articles/how-to-read-soap-bubbles.html">How to read Soap Bubbles without overexplaining it</a></h3>
+            <p class="meta">A practical guide for reading irony, tone shifts, and social critique.</p>
+          </article>
         </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="logo" style="margin-bottom: 1rem;">Forgotten Voices Press</div>
-            <p>Rediscovering German literary classics, one translation at a time.</p>
+    <section class="section signup" id="signup">
+      <div class="wrap">
+        <h2>Join Updates</h2>
+        <p>Get release updates, reading guides, and new Ricarda Huch essays. No spam.</p>
+        <form action="https://forgottenvoicespress.us7.list-manage.com/subscribe/post?u=7711409519d184557314150e1&amp;id=f341ae5513&amp;f_id=00cfc4e3f0" method="post" novalidate>
+          <label for="email-home" class="small">Email address</label>
+          <input id="email-home" type="email" name="EMAIL" required placeholder="you@example.com" autocomplete="email">
+          <div style="position:absolute;left:-5000px" aria-hidden="true">
+            <input type="text" name="b_7711409519d184557314150e1_f341ae5513" tabindex="-1" value="">
+          </div>
+          <input type="hidden" name="SIGNUP" value="thank-you.html">
+          <button class="btn btn-primary" type="submit">Join updates</button>
+        </form>
+        <p class="small" style="margin-top:0.8rem;">After subscribing, continue to <a href="thank-you.html">your sample page</a>.</p>
+      </div>
+    </section>
+  </main>
 
-            <div class="social-links">
-                <a href="mailto:laggner.alfred@gmail.com">Email</a>
-                <!-- Add social media links when available -->
-                <!-- <a href="#">Twitter</a> -->
-                <!-- <a href="#">Goodreads</a> -->
-            </div>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <h3 style="margin-bottom:0.4rem;">Forgotten Voices Press</h3>
+        <p class="small">We publish approachable, high-quality introductions to overlooked German literature for contemporary English-language readers.</p>
+        <p class="small">Contact: <a href="mailto:hello@example.com">hello@example.com</a> (replace with active address)</p>
+      </div>
+      <div>
+        <ul class="footer-nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="soap-bubbles/index.html">Soap Bubbles</a></li>
+          <li><a href="ricarda-huch/index.html">Ricarda Huch</a></li>
+          <li><a href="articles/index.html">Articles</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
-            <p style="font-size: 0.85rem; margin-top: 2rem;">
-                &copy; 2026 Forgotten Voices Press. All rights reserved.
-            </p>
-        </div>
-    </footer>
-
-    <!-- Mailchimp Auto-Redirect Script -->
-    <script>
-        // Automatically redirect to thank-you page after Mailchimp form submission
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get all Mailchimp forms on the page
-            const forms = document.querySelectorAll('form[action*="list-manage.com"]');
-
-            forms.forEach(function(form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault(); // Prevent default submission
-
-                    const formData = new FormData(form);
-                    const submitButton = form.querySelector('button[type="submit"]');
-                    const emailInput = form.querySelector('input[type="email"]');
-                    const originalButtonText = submitButton ? submitButton.textContent : '';
-
-                    // Show loading state
-                    if (submitButton) {
-                        submitButton.textContent = 'Submitting...';
-                        submitButton.disabled = true;
-                    }
-
-                    // Clear the email input
-                    if (emailInput) {
-                        emailInput.value = '';
-                    }
-
-                    // Submit to Mailchimp via fetch
-                    fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        mode: 'no-cors' // Mailchimp doesn't support CORS, but submission still works
-                    }).then(function() {
-                        // Wait a moment to ensure Mailchimp processes it
-                        setTimeout(function() {
-                            window.location.href = 'thank-you.html';
-                        }, 1000);
-                    }).catch(function() {
-                        // Even if fetch "fails" (CORS), the submission likely worked
-                        // Redirect anyway after a delay
-                        setTimeout(function() {
-                            window.location.href = 'thank-you.html';
-                        }, 1000);
-                    });
-                });
-            });
-        });
-    </script>
+  <script src="assets/js/site.js"></script>
 </body>
 </html>

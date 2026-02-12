@@ -1,72 +1,77 @@
-# Forgotten Voices Press - Landing Page
+# Forgotten Voices Press Static Site
 
-## Quick Start
+Modern static website for the **Soap Bubbles** collection and the **Ricarda Huch** context hub.
 
-### Setup (30 minutes)
+## Stack
 
-1. **Get the files ready**
-   ```bash
-   cd ~/translation-business/forgotten-voices-website
-   ```
+- Static HTML/CSS/JS only
+- No build step required
+- Deployable from this folder as-is
 
-2. **Add your book cover image**
-   - Export your book cover as `soap-bubbles-cover.jpg`
-   - Recommended size: 600-800px width
-   - Place in this folder
+## Site structure
 
-3. **Add Ricarda Huch image**
-   - Find a public domain photo of Ricarda Huch
-   - Save as `ricarda-huch.jpg`
-   - Place in this folder
+- `index.html` - Home / landing page
+- `soap-bubbles/index.html` - Collection guide
+- `ricarda-huch/index.html` - Author hub
+- `ricarda-huch/germany-legacy.html`
+- `ricarda-huch/women-in-her-era.html`
+- `ricarda-huch/reported-nominations.html`
+- `ricarda-huch/why-it-matters-us.html`
+- `ricarda-huch/author-and-historian.html`
+- `articles/index.html` - Article index with JS filters
+- `articles/*.html` - Individual articles with related links
+- `thank-you.html` - Signup follow-up page
+- `sitemap.html`, `sitemap.xml`
+- `sources.md` - citation TODO list
+- `assets/css/site.css` - shared design system
+- `assets/js/site.js` - mobile nav + article filtering
 
-4. **Customize the content**
-   - Open `index.html` in your editor
-   - Update launch date (search for "February 2026")
-   - Add your email address (search for "hello@forgottenvoicespress.com")
-   - Adjust any text to match your voice
+## Existing media reused
 
-5. **Setup Mailchimp** (see MAILCHIMP_SETUP.md)
+- `soap-bubbles-cover.jpg`
+- `ricarda-huch.jpg`
+- `terra-laggner.jpg`
 
-6. **Deploy to GitHub Pages** (see DEPLOYMENT.md)
+## Mailchimp signup notes
 
-## What's Included
+The forms post directly to Mailchimp endpoints (no forced JS redirects, no `no-cors` fetch workaround).
 
-- `index.html` - Beautiful, responsive landing page
-- `MAILCHIMP_SETUP.md` - Step-by-step Mailchimp integration
-- `DEPLOYMENT.md` - GitHub Pages deployment guide
-- `EMAIL_SEQUENCE.md` - 4 email templates ready to use
-- `AMAZON_OPTIMIZATION.md` - Amazon listing best practices
+- Home form is in `index.html`.
+- Users can continue to `thank-you.html` after subscribing.
 
-## Features
+## Edit content quickly
 
-✓ Fully responsive (mobile, tablet, desktop)
-✓ Email capture with Mailchimp integration
-✓ SEO optimized
-✓ Fast loading
-✓ Professional design
-✓ Easy to customize
-✓ No dependencies (pure HTML/CSS)
+- Home hero and CTAs: `index.html`
+- Collection copy: `soap-bubbles/index.html`
+- Author context pages: `ricarda-huch/*.html`
+- Article listings + filter tags: `articles/index.html`
+- Shared style tokens: `assets/css/site.css`
 
-## Cost
+## How to add a new article
 
-- Domain: $15/year (Namecheap)
-- Hosting: $0 (GitHub Pages)
-- Email: $0 (Mailchimp free tier up to 500 subscribers)
-- **Total: $15/year**
+1. Create a new file in `articles/`, e.g. `articles/new-topic.html`.
+2. Copy the structure of an existing article page and update:
+   - `<title>` + meta description
+   - breadcrumb
+   - tags (`<span class="tag">`)
+   - H1, body copy, related links
+3. Add the article card to `articles/index.html`:
+   - add `data-tags="..."` for filter behavior
+   - add title/excerpt/link card
+4. Optionally link it from `index.html` featured grid.
+5. Add URL to `sitemap.html` and `sitemap.xml`.
 
-## Timeline
+## Local testing
 
-- Day 1 (4 hours): Setup domain, customize page, add images
-- Day 2 (2 hours): Mailchimp setup, email sequence
-- Day 3 (2 hours): Deploy, test, polish
+Open `index.html` directly in a browser, or serve folder with any static server.
 
-## Support
+Check:
+- mobile menu toggle
+- article filter buttons
+- form action URLs
+- internal links between pages
 
-Questions? Email alfred (that's you!) at your email.
+## Deployment notes
 
-## Next Steps
+This directory is static-output ready. Upload all files while preserving folder structure.
 
-1. Read MAILCHIMP_SETUP.md
-2. Read DEPLOYMENT.md
-3. Setup your site
-4. Start collecting emails!
