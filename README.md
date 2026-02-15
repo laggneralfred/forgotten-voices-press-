@@ -49,17 +49,23 @@ The forms post directly to Mailchimp endpoints (no forced JS redirects, no `no-c
 
 ## How to add a new article
 
-1. Create a new file in `articles/`, e.g. `articles/new-topic.html`.
-2. Copy the structure of an existing article page and update:
-   - `<title>` + meta description
-   - breadcrumb
-   - tags (`<span class="tag">`)
-   - H1, body copy, related links
-3. Add the article card to `articles/index.html`:
-   - add `data-tags="..."` for filter behavior
-   - add title/excerpt/link card
-4. Optionally link it from `index.html` featured grid.
-5. Add URL to `sitemap.html` and `sitemap.xml`.
+Use the generator script (recommended):
+
+```bash
+bash scripts/new-article.sh \
+  --title "Your Article Title" \
+  --excerpt "One-sentence summary shown on article cards." \
+  --tags "method,legacy"
+```
+
+What it does automatically:
+- creates `articles/<slug>.html` from `templates/article-template.html`
+- inserts the new article card in `articles/index.html`
+- adds entries to `sitemap.html` and `sitemap.xml`
+
+After running:
+1. Edit the new article file and replace placeholder body content.
+2. Commit and push `main`.
 
 ## Local testing
 
@@ -75,3 +81,23 @@ Check:
 
 This directory is static-output ready. Upload all files while preserving folder structure.
 
+## Automated production deploy (GitHub Actions)
+
+Workflow file:
+- `.github/workflows/deploy-production.yml`
+
+Trigger:
+- automatic on push to `main`
+- manual via Actions "Run workflow"
+
+Required GitHub repository secrets:
+- `PROD_HOST` (example: `164.90.168.15`)
+- `PROD_PORT` (example: `22`)
+- `PROD_USER` (example: `root`)
+- `PROD_SSH_KEY` (private key with access to server)
+
+Deploy target:
+- syncs repo contents to `/var/www/html` via `rsync --delete`
+- applies web permissions
+- runs `apache2ctl configtest`
+- reloads Apache

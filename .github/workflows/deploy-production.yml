@@ -1,0 +1,53 @@
+name: Deploy Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        shell: bash
+        run: |
+          set -euo pipefail
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "${{ secrets.PROD_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p "${{ secrets.PROD_PORT }}" -H "${{ secrets.PROD_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Sync site files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rsync -az --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            -e "ssh -p ${{ secrets.PROD_PORT }}" \
+            ./ "${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}:/var/www/html/"
+
+      - name: Fix permissions and reload Apache
+        shell: bash
+        run: |
+          set -euo pipefail
+          ssh -p "${{ secrets.PROD_PORT }}" "${{ secrets.PROD_USER }}@${{ secrets.PROD_HOST }}" '
+            set -e
+            SUDO=""
+            if [ "$(id -u)" -ne 0 ]; then
+              SUDO="sudo"
+            fi
+            $SUDO chown -R www-data:www-data /var/www/html
+            $SUDO find /var/www/html -type d -exec chmod 755 {} \;
+            $SUDO find /var/www/html -type f -exec chmod 644 {} \;
+            $SUDO apache2ctl configtest
+            $SUDO systemctl reload apache2
+          '
