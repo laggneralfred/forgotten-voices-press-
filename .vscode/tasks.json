@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Preview: Python HTTP Server (5500)",
+      "type": "shell",
+      "command": "python3 -m http.server 5500",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Commit + Push main",
+      "type": "shell",
+      "command": "git add -A && git commit -m \"${input:commitMessage}\" && git push origin main",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Push current branch",
+      "type": "shell",
+      "command": "git push",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Deploy: Remote deploy-static.sh",
+      "type": "shell",
+      "command": "ssh root@164.90.168.15 'cd /var/www/forgottenvoices && sudo bash deploy-static.sh --deploy'",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "commitMessage",
+      "type": "promptString",
+      "description": "Commit message",
+      "default": "content update"
+    }
+  ]
+}

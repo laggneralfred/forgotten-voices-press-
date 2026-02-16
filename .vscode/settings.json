@@ -1,0 +1,7 @@
+{
+  "git.autofetch": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "liveServer.settings.root": "/",
+  "liveServer.settings.port": 5500
+}

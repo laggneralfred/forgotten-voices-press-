@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "ritwickdey.LiveServer",
+    "eamodio.gitlens",
+    "github.vscode-github-actions"
+  ]
+}
