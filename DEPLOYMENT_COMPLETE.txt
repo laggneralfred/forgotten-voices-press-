@@ -1,0 +1,41 @@
+FORGOTTEN VOICES PRESS - DEPLOYMENT RECORD
+==========================================
+
+Last Reviewed: February 12, 2026
+Status: LIVE AND OPERATIONAL
+
+LIVE URLS
+=========
+Main site: https://forgottenvoicespress.com
+WWW redirect: https://www.forgottenvoicespress.com
+Thank you page: https://forgottenvoicespress.com/thank-you.html
+
+SECURITY NOTE
+=============
+Sensitive infrastructure data (passwords, private key paths, direct root access details)
+has been removed from this repository.
+
+Required policy:
+- Never store credentials in tracked files.
+- Keep secrets in a password manager or secure vault.
+- Use redacted operational docs in git.
+
+DEPLOYED CONTENT
+================
+- index.html
+- thank-you.html
+- ricarda-huch.jpg
+- terra-laggner.jpg
+- soap-bubbles-cover.jpg
+
+MAINTENANCE
+===========
+- Keep SSL valid and auto-renewing.
+- Verify signup flow monthly.
+- Keep copy/date references current.
+
+NEXT ACTIONS
+============
+1. Confirm live SSL expiry/renewal status from secure ops access.
+2. Replace "Cover Coming Soon" block with final Zero and Aces cover.
+3. Keep this file as a non-sensitive status record only.
