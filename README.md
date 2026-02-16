@@ -14,7 +14,7 @@ Modern static website for the **Soap Bubbles** collection and the **Ricarda Huch
 - `soap-bubbles/index.html` - Collection guide
 - `ricarda-huch/index.html` - Author hub
 - `ricarda-huch/germany-legacy.html`
-- `ricarda-huch/women-in-her-era.html`
+- `articles/woman-in-her-era.html`
 - `ricarda-huch/reported-nominations.html`
 - `ricarda-huch/why-it-matters-us.html`
 - `ricarda-huch/author-and-historian.html`
